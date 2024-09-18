@@ -19,7 +19,7 @@
         </script>
         @endif
         <!-- Multi Columns Form -->
-        <form class="row g-3 mt-3" action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form class="row g-3 mt-3" action="{{ route('enrollment.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <!-- Row 1 -->
             <div class="col-md-4">
