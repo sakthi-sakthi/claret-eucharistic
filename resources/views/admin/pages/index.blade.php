@@ -44,8 +44,6 @@
                         </div>
                     </form>
                     <a href="/enroll-form" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Add New</a>
-                    <a href="javascript:void(0)" class="btn btn-success btn-sm mb-3" onclick="generatePDF()"><i class="fa fa-file-pdf"></i> Export PDF</a>
-                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm mb-3" onclick="generateExcel()"><i class="fa fa-file-excel"></i> Export CSV</a>
                     <table class="table datatable table-striped table-hover table-bordered">
                         <thead class="table-dark">
                             <tr>
@@ -70,22 +68,10 @@
                                 <td>{{ $enrollment->door_no }}</td>
                                 <td>{{ $enrollment->district }}</td>
                                 <td>
-                                    <a href="/enroll/view/{{ $enrollment->id }}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ route('enrollment.edit', $enrollment->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-
-                                    <form id="delete-form-{{ $enrollment->id }}" action="{{ route('delete', $enrollment->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $enrollment->id }})"><i class="fa fa-trash"></i></button>
-                                    <script>
-                                        function confirmDelete(id) {
-                                            if (confirm('Are you sure you want to delete this item?')) {
-                                                document.getElementById('delete-form-' + id).submit();
-                                            }
-                                        }
-                                    </script>
+                                    <a href="" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></button>
+                                   
                                 </td>
                             </tr>
                             @endforeach
@@ -100,32 +86,5 @@
 @endsection
 
 @section('scripts')
-<script>
-   async function generateExcel() {
-        const response = await fetch('http://127.0.0.1:8000/api/enroll/list');
-        const data = await response.json();
-        const flattenData = data.enrollment.map(item => {
-            return {
-                ...item,
-                death_anniversary: item.death_anniversary.map(death => 
-                    `${death.name} (${death.relation}), ${death.day} ${death.month}`
-                ).join('; '),
-                family_details: item.family_details.map(family => 
-                    `${family.name} (${family.relation}), DOB: ${family.dob_day} ${family.dob_month} ${family.dob_year}, DOM: ${family.dom_day} ${family.dom_month} ${family.dom_year}, Mobile: ${family.mobile}`
-                ).join('; ')
-            };
-        });
-        const ws_data = [
-            Object.keys(flattenData[0]).map(key => key.replace(/_/g, ' ').toUpperCase()),
-            ...flattenData.map(item => Object.values(item))
-        ];
-
-        const ws = XLSX.utils.aoa_to_sheet(ws_data);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Enrollments");
-
-        XLSX.writeFile(wb, "enrollments.xlsx");
-    }
-</script>
 
 @endsection
