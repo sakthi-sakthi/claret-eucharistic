@@ -33,6 +33,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: sftp # Use `sftp` if needed
+          protocol: ftps # Use `sftp` if needed
           local-dir: ./ # Directory of Laravel project on GitHub
           server-dir: /public_html/ # Adjust to the target directory in cPanel
