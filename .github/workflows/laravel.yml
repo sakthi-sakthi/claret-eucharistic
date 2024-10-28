@@ -3,7 +3,7 @@ name: Deploy Laravel to cPanel
 on:
   push:
     branches:
-      - master # Adjust to your deployment branch if different
+      - master # Change to your preferred branch
 
 jobs:
   deploy:
@@ -18,21 +18,21 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.2" # Adjust to your Laravel PHP version
-          extensions: mbstring, bcmath
+          php-version: '8.0'  # Adjust to your Laravel PHP version
+          extensions: mbstring, bcmath, xml, curl  # Add any other required extensions
           tools: composer
 
-      # Step 3: Install dependencies
+      # Step 3: Install Composer dependencies
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
-      # Step 4: Upload to cPanel via FTP
+      # Step 4: Deploy to cPanel via FTP or SFTP
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps # Use `sftp` if needed
-          local-dir: ./ # Directory of Laravel project on GitHub
-          server-dir: /public_html/ # Adjust to the target directory in cPanel
+          server: ${{ secrets.FTP_HOST }}  # Your cPanel FTP/SFTP server
+          username: ${{ secrets.FTP_USERNAME }}  # Your cPanel FTP/SFTP username
+          password: ${{ secrets.FTP_PASSWORD }}  # Your cPanel FTP/SFTP password
+          protocol: ftp  # Change to 'ftp' if using FTP
+          local-dir: ./  # Directory of your Laravel project on GitHub
+          server-dir: /public_html/claret-eucharistic/  # Adjust to your target directory, ensure it ends with '/'
