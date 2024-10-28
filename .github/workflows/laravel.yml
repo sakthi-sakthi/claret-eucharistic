@@ -35,4 +35,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp # Use `sftp` if needed
           local-dir: ./ # Directory of Laravel project on GitHub
-          server-dir: /public_html # Adjust to the target directory in cPanel
+          server-dir: /public_html/ # Adjust to the target directory in cPanel
