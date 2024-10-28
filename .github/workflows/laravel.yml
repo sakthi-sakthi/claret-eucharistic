@@ -29,6 +29,8 @@ jobs:
       with : 
           server: ftp.demoboscosoft.com
           username: demoboscosoft
-          password: ${{ secrets.ftp_password }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21 # Use port 21 for FTPS
+          protocol: ftps # Make sure this is set to 'ftps'
           local-dir: ./
           server-dir: /public_html/claret-eucharistic/
