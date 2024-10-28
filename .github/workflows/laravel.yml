@@ -26,14 +26,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
-      # Step 4: Generate app key if not exists
-      - name: Generate app key
-        run: php artisan key:generate --force
-        env:
-          APP_ENV: production
-          APP_KEY: ${{ secrets.APP_KEY }}
-
-      # Step 5: Upload to cPanel via FTP
+      # Step 4: Upload to cPanel via FTP
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
