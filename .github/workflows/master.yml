@@ -34,9 +34,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps # Use ftps for secure transfer
-          local-dir: . # The root directory for deployment
+          local-dir: ./ # Specify the root directory for deployment; end with a slash for folder
           server-dir: /public_html/claret-eucharistic/ # Adjusted to the target directory in cPanel
-          skip-cleanup: true # Keep existing files on the server
           dry-run: false # Set to true for testing before actual deployment
           exclude: |
             vendor/** # Exclude vendor directory
