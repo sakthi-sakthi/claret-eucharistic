@@ -22,7 +22,7 @@ jobs:
           extensions: mbstring, bcmath
           tools: composer
 
-      # Step 3: Install dependencies
+      # Step 3: Install Composer dependencies
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
@@ -30,7 +30,7 @@ jobs:
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ftp.demoboscosoft.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp # Use `sftp` if needed
