@@ -152,7 +152,7 @@
                     </table>
                 </div>
             </div>
-            <a href="{{ route('admin.pages.index') }}" class="btn btn-danger btn-sm mt-3">Back</a>
+            <a href="{{ route('admin.pages.index') }}" class="btn btn-danger btn-sm mt-3">Go Back</a>
         </div>
     </div>
 </div>
