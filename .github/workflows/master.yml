@@ -26,7 +26,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
-      # Step 4: Upload to cPanel via FTPS, using the cache mechanism
+      # Step 4: Deploy to cPanel via FTPS
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
@@ -34,9 +34,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps # Use ftps for secure transfer
-          local-dir: ./ # Change to the specific directories you want to deploy
-          server-dir: /public_html/claret-eucharistic/ # Adjust to the target directory in cPanel
+          local-dir: . # The root directory for deployment
+          server-dir: /public_html/claret-eucharistic/ # Adjusted to the target directory in cPanel
           skip-cleanup: true # Keep existing files on the server
-          dry-run: false # Change to true for testing
-
-      # Optionally, you can add a step to clear caches or perform other tasks
+          dry-run: false # Set to true for testing before actual deployment
+          exclude: |
+            vendor/** # Exclude vendor directory
+            node_modules/** # Exclude node_modules directory
+            .env # Exclude the .env file for security
