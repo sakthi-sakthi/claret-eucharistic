@@ -31,4 +31,4 @@ jobs:
           username: demoboscosoft
           password: ${{ secrets.ftp_password }}
           local-dir: ./
-          server-dir: /public_html/claret-eucharistic
+          server-dir: /public_html/claret-eucharistic/
