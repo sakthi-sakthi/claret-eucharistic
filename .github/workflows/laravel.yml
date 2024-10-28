@@ -18,7 +18,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'  # Adjust to your Laravel PHP version
+          php-version: '8.2'  # Adjust to your Laravel PHP version
           extensions: mbstring, bcmath, xml, curl  # Add any other required extensions
           tools: composer
 
