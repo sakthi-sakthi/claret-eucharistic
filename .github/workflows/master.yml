@@ -26,13 +26,17 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader
 
-      # Step 4: Upload to cPanel via FTP
+      # Step 4: Upload to cPanel via FTPS, using the cache mechanism
       - name: Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ftp.demoboscosoft.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps # Use `sftp` if needed
-          local-dir: ./ # Directory of Laravel project on GitHub
-          server-dir: /public_html/ # Adjust to the target directory in cPanel
+          protocol: ftps # Use ftps for secure transfer
+          local-dir: ./ # Change to the specific directories you want to deploy
+          server-dir: /public_html/claret-eucharistic/ # Adjust to the target directory in cPanel
+          skip-cleanup: true # Keep existing files on the server
+          dry-run: false # Change to true for testing
+
+      # Optionally, you can add a step to clear caches or perform other tasks
