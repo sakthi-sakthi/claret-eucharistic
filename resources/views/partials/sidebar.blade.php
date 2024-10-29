@@ -19,7 +19,7 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#enrollment-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-clipboard-data"></i><span>Enrollment Form</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-clipboard-data"></i><span>Enrollment Data Form</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="enrollment-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
