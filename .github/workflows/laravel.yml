@@ -23,4 +23,5 @@ jobs:
           exclude: |
             vendor/*
             .git*
+            public/*
           dangerous-clean-slate: false
