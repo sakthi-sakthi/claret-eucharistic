@@ -18,5 +18,6 @@ use App\Http\Controllers\Auth\ApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// enroll list api service
 Route::get('/enroll/list', [ApiController::class, 'showList']);
 Route::get('/enroll/list/{id}', [ApiController::class, 'listDatabyId']);
